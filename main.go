@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"practise/chapter2"
+	"practise/chapter4"
 )
 
 func main() {
@@ -13,5 +13,12 @@ func main() {
 	// chapter1.Conditions()
 
 	// chapter2.Arrays()
-	chapter2.Slices()
+	// chapter2.Slices()
+	// chapter2.Maps()
+
+	// chapter3.MultipleReturn()
+	// chapter3.Vardiac()
+	// chapter3.Closure()
+
+	chapter4.Pointers()
 }
