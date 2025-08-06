@@ -1,6 +1,8 @@
 package chapter4
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Person struct {
 	Name string
@@ -22,6 +24,11 @@ func Pointers() {
 
 	increase(&s)
 	fmt.Println(s)
+
+	result := getValue()
+	if result != nil {
+		fmt.Println(*result)
+	}
 }
 
 func changeValue(p *Person) {
@@ -31,4 +38,9 @@ func changeValue(p *Person) {
 
 func increase(p *Person) {
 	p.Age++
+}
+
+func getValue() *int {
+	x := 10
+	return &x
 }

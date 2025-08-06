@@ -20,5 +20,7 @@ func main() {
 	// chapter3.Vardiac()
 	// chapter3.Closure()
 
-	chapter4.Pointers()
+	// chapter4.Pointers()
+	// chapter4.Strings()
+	chapter4.Interface()
 }
