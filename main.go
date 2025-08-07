@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"practise/chapter6"
+	"practise/chapter7"
 )
 
 func main() {
@@ -33,5 +33,8 @@ func main() {
 	// chapter6.Routines()
 	// chapter6.Sync()
 	// chapter6.Channels()
-	chapter6.MultipleChannels()
+	// chapter6.MultipleChannels()
+	// chapter6.Mutex()
+
+	chapter7.Context()
 }
