@@ -1,12 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"log"
-	"practise/chapter4"
+	"practise/chapter6"
 )
 
 func main() {
-	log.Println("answer's are below")
+	log.Println("answers are below")
+	fmt.Println()
 
 	// chapter1.BasicExample()
 	// chapter1.Loops()
@@ -22,5 +24,14 @@ func main() {
 
 	// chapter4.Pointers()
 	// chapter4.Strings()
-	chapter4.Interface()
+	// chapter4.Interface()
+
+	// chapter5.TypeAssertion()
+	// chapter5.Generics()
+	// chapter5.GenericStruct()
+
+	// chapter6.Routines()
+	// chapter6.Sync()
+	// chapter6.Channels()
+	chapter6.MultipleChannels()
 }
