@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"practise/chapter7"
+	"practise/chapter11"
 )
 
 func main() {
@@ -36,5 +36,17 @@ func main() {
 	// chapter6.MultipleChannels()
 	// chapter6.Mutex()
 
-	chapter7.Context()
+	// chapter7.Context()
+
+	// chapter8.ContextEx()
+
+	// chapter9.Proxy()
+	// chapter9.AnotherProxy()
+	// chapter9.GinProxy()
+
+	// chapter10.JsonParsing()
+	// chapter10.YamlParse()
+
+	// chapter11.JwtGin()
+	chapter11.Hashing()
 }
