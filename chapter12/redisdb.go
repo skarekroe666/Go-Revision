@@ -95,7 +95,7 @@ func createOrUpdateProductWriteThrough(db *gorm.DB, id uint, name string, price 
 	return nil
 }
 
-func invalidDateProductCache(id uint) error {
+func invalidateProductCache(id uint) error {
 	cacheKey := fmt.Sprintf("product:%d", id)
 	_, err := client.Del(c, cacheKey).Result()
 	return err
@@ -106,7 +106,7 @@ func deleteProductEventBased(db *gorm.DB, id uint) error {
 		return err
 	}
 
-	return invalidDateProductCache(id)
+	return invalidateProductCache(id)
 }
 
 func getRecentProducts(db *gorm.DB) ([]Product, error) {
@@ -141,7 +141,7 @@ func updateProductWithTransaction(db *gorm.DB, id uint, name string, price int) 
 	})
 
 	if err == nil {
-		db.Model(&Product{}).Where("id = ?").Updates(Product{
+		db.Model(&Product{}).Where("id = ?", id).Updates(Product{
 			Name:  name,
 			Price: price,
 		})
@@ -185,8 +185,7 @@ func RedisDb() {
 
 	r.POST("/product/invalidate/:id", func(c *gin.Context) {
 		id, _ := strconv.Atoi(c.Param("id"))
-		err := invalidDateProductCache(uint(id))
-		if err != nil {
+		if err := invalidateProductCache(uint(id)); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
@@ -210,14 +209,17 @@ func RedisDb() {
 			Name  string `json:"name"`
 			Price int    `json:"price"`
 		}
+
 		if err := c.BindJSON(&req); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
 			return
 		}
+
 		if err := updateProductWithTransaction(db, uint(id), req.Name, req.Price); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return
 		}
+		
 		c.JSON(http.StatusOK, gin.H{"status": "updated"})
 	})
 
