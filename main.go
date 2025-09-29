@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"practise/chapter11"
+	"practise/chapter12"
 )
 
 func main() {
@@ -48,5 +48,8 @@ func main() {
 	// chapter10.YamlParse()
 
 	// chapter11.JwtGin()
-	chapter11.Hashing()
+	// chapter11.Hashing()
+
+	// chapter12.RedisEx()
+	chapter12.RedisDb()
 }
