@@ -16,29 +16,37 @@ type Car struct {
 }
 
 func YamlParse() {
-	// c := Car{
-	// 	TopSpeed:   231,
-	// 	Name:       "SF-90",
-	// 	Brand:      "Ferrari",
-	// 	Passengers: []string{"skarekroe", "sanjana"},
-	// }
+	c := Car{
+		TopSpeed:   231,
+		Name:       "SF-90",
+		Brand:      "Ferrari",
+		Passengers: []string{"skarekroe", "sanjana"},
+	}
 
-	// out, err := yaml.Marshal(c)
+	out, err := yaml.Marshal(c)
 	// if err != nil {
 	// 	log.Fatal(err)
 	// }
+	checkNilError(err)
 
-	// fmt.Println(string(out))
+	fmt.Println(string(out))
 
-	f, err := os.ReadFile("test.yaml")
+	f, err := os.ReadFile("chapter10/test.yaml")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	checkNilError(err)
+
+	var car Car
+	if err := yaml.Unmarshal(f, &car); err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("%+v\n", car)
+}
+
+func checkNilError(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	var c Car
-	if err := yaml.Unmarshal(f, &c); err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Printf("%+v\n", c)
 }
